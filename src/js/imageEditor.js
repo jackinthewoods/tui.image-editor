@@ -73,6 +73,12 @@ const {isUndefined, forEach, CustomEvents} = snippet;
  */
 class ImageEditor {
     constructor(wrapper, options) {
+        if (options.usageStatistics) {
+            sendHostName();
+        } else {
+            tui.usageStatistics = false;
+        }
+
         options = snippet.extend({
             includeUI: false,
             usageStatistics: true
@@ -142,10 +148,6 @@ class ImageEditor {
             applyCropSelectionStyle: options.applyCropSelectionStyle,
             applyGroupSelectionStyle: options.applyGroupSelectionStyle
         });
-
-        if (options.usageStatistics) {
-            sendHostName();
-        }
 
         if (this.ui) {
             this.ui.initCanvas();
