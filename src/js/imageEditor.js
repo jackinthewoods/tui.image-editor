@@ -73,16 +73,16 @@ const {isUndefined, forEach, CustomEvents} = snippet;
  */
 class ImageEditor {
     constructor(wrapper, options) {
+        options = snippet.extend({
+            includeUI: false,
+            usageStatistics: true
+        }, options);
+
         if (options.usageStatistics) {
             sendHostName();
         } else {
             tui.usageStatistics = false;
         }
-
-        options = snippet.extend({
-            includeUI: false,
-            usageStatistics: true
-        }, options);
 
         this.mode = null;
 
